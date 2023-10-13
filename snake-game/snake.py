@@ -1,5 +1,5 @@
 from turtle import Turtle
-
+STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
 
 class Snake:
     def __init__(self):
@@ -9,13 +9,18 @@ class Snake:
         self.head = self.snake[0]
 
     def create_snake(self):
-        for part in range(self.body):
-            snake_part = Turtle()
-            snake_part.shape("square")
-            snake_part.color("white")
-            snake_part.penup()
-            snake_part.goto(-20 * part, 0)
-            self.snake.append(snake_part)
+        for part in STARTING_POSITIONS:
+            self.add_part(part)
+
+    def add_part(self, position):
+        snake_part = Turtle("square")
+        snake_part.color("white")
+        snake_part.penup()
+        snake_part.goto(position)
+        self.snake.append(snake_part)
+
+    def extend(self):
+        self.add_part(self.snake[-1].position())
 
     def move(self):
         for part in range(len(self.snake) - 1, 0, -1):

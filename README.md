@@ -1,1 +1,1 @@
-# snake-game
+# miles to km converter GUI
